@@ -1,0 +1,55 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+    <h1>Manage Customer Orders</h1>
+
+    <a href="{% url 'orders:add_manual_order' %}" class="btn btn-primary" style="background-color: #aa6b53; color: white">
+        Add Order Manually
+    </a>
+
+    <br>
+    <br>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Pickup Date</th>
+            <th>Pickup Time</th>
+            <th>Order Options</th>
+        </tr>
+    {% for order in customerOrders %}
+        <tr>
+            <td>
+                {{ order.username }}
+            </td>
+            <td>
+                {{ order.first_name }}
+            </td>
+            <td>
+                {{ order.last_name }}
+            </td>
+            <td>
+                {{ order.email }}
+            </td>
+            <td>
+                {{ order.pickup_date }}
+            </td>
+            <td>
+                {{ order.pickupTime }}
+            </td>
+            <td>
+                <a href="/orders/view_customer_order_details/{{ order.id }}">Manage Order</a><br><br>
+                <a href="/orders/finish_order/{{ order.id }}">Finish Order</a><br><br>
+                <a href="/orders/delete_order/{{ order.id }}"
+                    style="color: red;"
+                    onclick="return confirm('Are you sure you want to permanently delete this order?')">
+                    Delete Order
+                </a><br>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

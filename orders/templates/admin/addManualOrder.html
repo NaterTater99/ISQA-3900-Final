@@ -1,0 +1,12 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+    <h1>Add Manual Order</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="background-color: #aa6b53; color: white">Save Order</button>
+        <a href="{% url 'orders:manage_customer_orders' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
